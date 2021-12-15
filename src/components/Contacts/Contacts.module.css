@@ -1,0 +1,18 @@
+.listItem {
+  list-style: decimal;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.item {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.button {
+  margin-left: 20px;
+  border-radius: 25%;
+  border-color: rgba(190, 31, 31, 0.788);
+  background: rgb(231, 179, 179);
+  font-family: "Courier New", Courier, monospace;
+  cursor: pointer;
+}
