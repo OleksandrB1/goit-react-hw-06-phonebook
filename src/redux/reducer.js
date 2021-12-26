@@ -10,12 +10,10 @@ const contactReducer = createReducer(
     [actions.add]: (state, action) => {
       const short = require("short-uuid");
       const id = short.generate();
-      if (!state.find((contact) => contact.name === action.payload.name)) {
-        return [
-          ...state,
-          { id: id, name: action.payload.name, number: action.payload.number },
-        ];
-      } else alert(`${action.payload.name} is already in contacts.`);
+      return [
+        ...state,
+        { id: id, name: action.payload.name, number: action.payload.number },
+      ];
     },
 
     [actions.remove]: (state, action) => {

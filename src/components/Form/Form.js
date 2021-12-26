@@ -1,17 +1,22 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import actions from "../../redux/actions";
 import s from "./Form.module.css";
 
 export default function Form() {
-  const [name, setName] = useState("");
+  const [nameState, setNameState] = useState("");
   const [number, setNumber] = useState("");
   const dispatch = useDispatch();
+  const state = useSelector((state) => state.contacts.items);
 
   const submit = (event) => {
     event.preventDefault();
-    dispatch(actions.add(name, number));
-    setName("");
+    if (state.find((contact) => contact.name === nameState)) {
+      alert(`${nameState} is already in contacts.`);
+      return;
+    }
+    dispatch(actions.add(nameState, number));
+    setNameState("");
     setNumber("");
   };
 
@@ -26,9 +31,9 @@ export default function Form() {
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
             required
-            value={name}
+            value={nameState}
             onChange={(e) => {
-              setName(e.currentTarget.value);
+              setNameState(e.currentTarget.value);
             }}
           />
         </label>
